@@ -289,6 +289,11 @@ public class PacketReaderService {
 
     private ObjectDto searchProcessWithLatestIteration(String id, String source, String process) {
         List<ObjectDto> allObjects = packetReader.info(id);
+        try {
+            LOGGER.info("allObjects:: " + objectMapper.writeValueAsString(allObjects));
+        } catch(Exception e){
+            LOGGER.info(String.valueOf(e));
+        }
         Collections.sort(allObjects, (i1, i2) -> extractInt(i2.getProcess()) - (extractInt(i1.getProcess())));
 
         Optional<ObjectDto> objectDto = allObjects.stream().filter(obj ->
