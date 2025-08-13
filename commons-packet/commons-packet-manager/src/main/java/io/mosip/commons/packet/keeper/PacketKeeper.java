@@ -162,6 +162,8 @@ public class PacketKeeper {
             }
             byte[] subPacket = getCryptoService().decrypt(helper.getRefId(
                     packet.getPacketInfo().getId(), packet.getPacketInfo().getRefId()), encryptedSubPacket);
+            boolean sub = subPacket == null;
+            LOGGER.info("subPacket:: "+ sub);
             packet.setPacket(subPacket);
 
 
